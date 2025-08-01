@@ -42,6 +42,12 @@ show-forwarded-ports: check-context
 forward-ports: check-context
 	kubectl -n argo port-forward deployment/argo-server 2746:2746
 
-install-workflow-repo: check-context
-    helm repo add omegawf https://github.com/amit-ingaro/omega-devops-poc/charts
-    helm install omegawfchart omegawf/workflow-chart --namespace argo
+install-workflows-repo: check-context
+	echo "Adding repo and installing workflow-chart"
+	helm repo add omegawf https://amit-ingaro.github.io/omega-devops-poc/charts/
+	helm install workflow-chart omegawf/workflow-chart
+
+clean-workflows-repo: check-context
+	echo " remove chart repo and uninstalling workflow-chart"
+	helm repo remove omegawf
+	helm uninstall workflow-chart --namespace argo
