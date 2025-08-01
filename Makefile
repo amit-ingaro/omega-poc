@@ -44,10 +44,10 @@ forward-ports: check-context
 
 install-workflows-repo: check-context
 	echo "Adding repo and installing workflow-chart"
-	helm repo add omegawf https://amit-ingaro.github.io/omega-devops-poc/charts/
-	helm install workflow-chart omegawf/workflow-chart
+	helm repo add omegademo https://amit-ingaro.github.io/omega-devops-poc/demo-charts/
+	helm install workflow-chart omegademo/workflow-demo
 
 clean-workflows-repo: check-context
-	echo " remove chart repo and uninstalling workflow-chart"
-	helm repo remove omegawf
-	helm uninstall workflow-chart --namespace argo
+	echo " remove chart repo and uninstalling workflow-demo"
+	helm repo remove omegademo
+	helm uninstall workflow-demo --namespace argo
